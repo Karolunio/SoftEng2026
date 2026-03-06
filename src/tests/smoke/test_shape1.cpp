@@ -6,7 +6,7 @@ TEST(test_shape1, AddFunction)
 {
     bool res=true;
     ShapeParam<float> param;
-    res = param.set(ShapeParamIndex::PARAM_RADIUS, 1.f);
+    res = param.set_attrib(ShapeParamIndex::PARAM_RADIUS, 1.f);
     ASSERT_NE(res, false);
 
     param.type=ShapeType::PT_CIRCLE;
@@ -18,7 +18,7 @@ TEST(test_shape1, AddFunction)
     ASSERT_NE(shape, nullptr);
 
     ShapeResultData<float> data=shape->compute();
-    float area=data.get(ShapeResultIndex::RESULT_AREA);
+    float area=data.get_attrib(ShapeResultIndex::RESULT_AREA);
     ASSERT_NE(area, 0.f);
 
     shape.reset(nullptr);

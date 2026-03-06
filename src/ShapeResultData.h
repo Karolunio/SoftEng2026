@@ -13,19 +13,19 @@ class ShapeResultData {
 
 
   public:
-    inline T get(ShapeResultIndex ind);
+    inline T get_attrib(ShapeResultIndex ind);
 
-    inline bool set(ShapeResultIndex ind, const T & val);
+    inline bool set_attrib(ShapeResultIndex ind, const T & val);
 
 };
 template<class T>
-inline T ShapeResultData<T>::get(ShapeResultIndex ind) {
+inline T ShapeResultData<T>::get_attrib(ShapeResultIndex ind) {
     if(ind<attribs.size()) return attribs[ind];
     return 0;
 }
 
 template<class T>
-inline bool ShapeResultData<T>::set(ShapeResultIndex ind, const T & val) {
+inline bool ShapeResultData<T>::set_attrib(ShapeResultIndex ind, const T & val) {
     if(ind>=attribs.size())attribs.resize(ind+1);
     attribs[ind]=val;
     return true;
