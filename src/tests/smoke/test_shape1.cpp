@@ -1,4 +1,6 @@
 
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <gtest/gtest.h>
 #include "ShapeFactory.h"
 
@@ -31,4 +33,20 @@ int main(int argc, char** argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
+
+    // TST
+    /*ShapeParam<double> param;
+
+    param.set(PARAM_RADIUS, 5.0);
+    param.set(PARAM_RADIUS_2, 2.0);
+
+    Torus<double> torus(param);
+
+    ShapeResultData<double> result = torus.compute();
+
+    cout << torus.print() << endl;
+    cout << "Volume: " << result.get(RESULT_VOLUME) << endl;
+    cout << "Surface: " << result.get(RESULT_SURFACE) << endl;
+
+    return 0;*/
 }

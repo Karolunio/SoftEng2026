@@ -1,11 +1,11 @@
 #ifndef _TORUS_H
 #define _TORUS_H
 
-
 #include "Shape3D.h"
 #include "ShapeResultData.h"
 #include <string>
-#include <numbers>
+#include <cmath>
+//#include <numbers> // (C++20)
 using namespace std;
 #include "ShapeParam.h"
 
@@ -28,7 +28,8 @@ inline ShapeResultData<T> Torus<T>::compute() {
     T R = this->m_param.get(PARAM_RADIUS);
     T r = this->m_param.get(PARAM_RADIUS_2);
 
-    const T PI = static_cast<T>(numbers::pi);
+    //const T PI = static_cast<T>(numbers::pi); // (C++20)
+    const T PI = static_cast<T>(M_PI);
 
     T volume = 2 * PI * PI * R * r * r;
     T surface = 4 * PI * PI * R * r;
