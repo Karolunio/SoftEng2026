@@ -7,7 +7,7 @@ using namespace std;
 #include "ShapeResultIndex.h"
 
 template<class T>
-class ShapeResultData {
+class ShapeResult {
   private:
     vector<T> attribs;
 
@@ -19,13 +19,13 @@ class ShapeResultData {
 
 };
 template<class T>
-inline T ShapeResultData<T>::get_attrib(ShapeResultIndex ind) {
+inline T ShapeResult<T>::get_attrib(ShapeResultIndex ind) {
     if(ind<attribs.size()) return attribs[ind];
     return 0;
 }
 
 template<class T>
-inline bool ShapeResultData<T>::set_attrib(ShapeResultIndex ind, const T & val) {
+inline bool ShapeResult<T>::set_attrib(ShapeResultIndex ind, const T & val) {
     if(ind>=attribs.size())attribs.resize(ind+1);
     attribs[ind]=val;
     return true;
