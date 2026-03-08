@@ -52,8 +52,8 @@ inline string Cylinder<T>::print() {
     return oss.str();
 }
 
-template<class T>
-inline Cylinder<T>::Cylinder(const ShapeParam<T>& param) : Shape3D<T>(param) {
-}
+template <class T>
+inline Cylinder<T>::Cylinder(const ShapeParam<T>& param): Shape3D<T>(param)
+{}
 
 #endif
