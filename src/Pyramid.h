@@ -13,49 +13,53 @@ using namespace std;
 template<class T>
 class Pyramid : public Shape3D<T> {
 public:
-    inline ShapeResultData<T> compute();
+    inline ShapeResult<T> compute();
     inline string print();
     inline Pyramid(const ShapeParam<T>& param);
 };
 
 template<class T>
-inline ShapeResultData<T> Pyramid<T>::compute() {
-    const T width = this->m_param.get(PARAM_WIDTH);
-    const T height = this->m_param.get(PARAM_HEIGHT);
-    const T depth = this->m_param.get(PARAM_DEPTH);
+inline ShapeResult<T> Pyramid<T>::compute() {
 
-    const double w = static_cast<double>(width);
-    const double h = static_cast<double>(height);
-    const double d = static_cast<double>(depth);
+    T width = this->m_param.get_attrib(PARAM_WIDTH);
+    T height = this->m_param.get_attrib(PARAM_HEIGHT);
+    T depth = this->m_param.get_attrib(PARAM_DEPTH);
 
-    const double slantWidth = sqrt(h * h + (d * d) / 4.0);
-    const double slantDepth = sqrt(h * h + (w * w) / 4.0);
+    double w = static_cast<double>(width);
+    double h = static_cast<double>(height);
+    double d = static_cast<double>(depth);
 
-    const double volume = (w * d * h) / 3.0;
-    const double surface = (w * d) + (w * slantWidth) + (d * slantDepth);
+    double slantWidth = sqrt(h * h + (d * d) / 4.0);
+    double slantDepth = sqrt(h * h + (w * w) / 4.0);
 
-    ShapeResultData<T> result;
-    result.set(RESULT_VOLUME, static_cast<T>(volume));
-    result.set(RESULT_SURFACE, static_cast<T>(surface));
+    double volume = (w * d * h) / 3.0;
+    double surface = (w * d) + (w * slantWidth) + (d * slantDepth);
+
+    ShapeResult<T> result;
+
+    result.set_attrib(RESULT_VOLUME, static_cast<T>(volume));
+    result.set_attrib(RESULT_SURFACE, static_cast<T>(surface));
 
     return result;
 }
 
 template<class T>
 inline string Pyramid<T>::print() {
-    const T width = this->m_param.get(PARAM_WIDTH);
-    const T height = this->m_param.get(PARAM_HEIGHT);
-    const T depth = this->m_param.get(PARAM_DEPTH);
 
-    ShapeResultData<T> result = compute();
+    T width = this->m_param.get_attrib(PARAM_WIDTH);
+    T height = this->m_param.get_attrib(PARAM_HEIGHT);
+    T depth = this->m_param.get_attrib(PARAM_DEPTH);
+
+    ShapeResult<T> result = compute();
 
     ostringstream out;
+
     out << "=== SOLID: PYRAMID ===" << endl;
     out << "Width: " << width << endl;
     out << "Height: " << height << endl;
     out << "Depth: " << depth << endl;
-    out << "Volume: " << result.get(RESULT_VOLUME) << endl;
-    out << "Surface area: " << result.get(RESULT_SURFACE) << endl;
+    out << "Volume: " << result.get_attrib(RESULT_VOLUME) << endl;
+    out << "Surface: " << result.get_attrib(RESULT_SURFACE) << endl;
     out << "=====================";
 
     return out.str();
